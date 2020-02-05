@@ -1,0 +1,37 @@
+
+# Created by https://www.gitignore.io/api/django,python
+# Edit at https://www.gitignore.io/?templates=django,python
+
+### Django ###
+*.log
+*.pot
+*.pyc
+__pycache__/
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+media
+
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+.pytest_cache/
+
+# pyenv
+.python-version
+
+# VSCode
+.vscode/*
+
+# Database
+*.db
+*.sqlite3
