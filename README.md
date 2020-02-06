@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/kpi-web-guild/django-girls-blog-slsh1o.svg?branch=master)](https://travis-ci.com/kpi-web-guild/django-girls-blog-slsh1o)
+
 # Learn Python/Django
 
 Goal of this project is to learn Django framework and Python with frequently used tools in Python web stack
