@@ -1,6 +1,6 @@
 repos:
 -   repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v2.5.0  # Use the ref you want to point at
+    rev: v2.5.0
     hooks:
     -   id: trailing-whitespace
     -   id: no-commit-to-branch
@@ -36,7 +36,7 @@ repos:
     -   id: remove-crlf
     -   id: forbid-tabs
     -   id: remove-tabs
-        args: [ --whitespaces-count, '4' ]  # defaults to: 4
+        args: [ --whitespaces-count, '4' ]
 
 -   repo: https://github.com/pre-commit/mirrors-mypy
     rev: v0.761
@@ -48,5 +48,8 @@ repos:
     -   id: pylint
         name: pylint
         entry: pylint
+        args:
+        -   --load-plugins=pylint_django
+        -   --good-names=urlpatterns
         language: system
         types: [python]
