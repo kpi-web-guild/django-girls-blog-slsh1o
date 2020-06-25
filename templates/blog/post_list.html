@@ -5,11 +5,55 @@
 {% endblock %}
 
 {% block content %}
-{% for post in posts %}
-    <div>
-        <p>published: {{ post.published_date }}</p>
-        <h2><a href="">{{ post.title }}</a></h2>
-        <p>{{ post.text|linebreaksbr }}</p>
+    <div class="row" id="posts">
+        Loading...
     </div>
-{% endfor %}
+
+    <script>
+        const postsEl = document.getElementById("posts")
+        
+        // more modern way to write function in JS
+        const loadPosts = function(postsElement) {
+            const xhr = new XMLHttpRequest()
+            const method = 'GET'
+            const url = 'api/posts/'
+            const responseType = 'json'
+
+            xhr.responseType = responseType
+            xhr.open(method, url)
+            xhr.onload = function() {
+                const serverResponse = xhr.response
+                const listedItems = serverResponse.response
+                var finalPostStr = ''
+
+                for (var i = 0; i < listedItems.length; i++) {
+                    var postObj = listedItems[i]
+                    var item = formatPostElement(postObj)
+                    finalPostStr += item
+                }
+
+                postsElement.innerHTML = finalPostStr
+            }
+            xhr.send()
+        }
+
+        loadPosts(postsEl)
+
+        function handleDidLike(post_id, likesCount) {
+            console.log(post_id, likesCount)
+        }
+
+        function likeBtn(post) {
+            return `<div class="btn-group">
+            <button class="btn btn-primary btn-sm" onclick=handleDidLike(${post.id},${post.likes})>Like ${post.likes}</button>
+            </div>`
+        }
+
+        function formatPostElement(post) {
+            var formattedPost = `<div class="col-12 border rounded py-3 mb-3 post" id="post-${post.id}"><h1>${post.title}</h1>
+            <p>${post.text}</p>
+            ${likeBtn(post)}</div>`
+            return formattedPost
+        }
+    </script>
 {% endblock content %}
