@@ -10,14 +10,13 @@ from .forms import PostForm
 
 def post_list(request, *args, **kwargs):
     """Pure Django REST API posts list view."""
-    posts_list = Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
-    return render(request, 'blog/post_list.html', {'posts': posts_list})
+    return render(request, 'blog/post_list.html', {})
 
 
 def post_detail(request, post_pk, *args, **kwargs):
     """Pure Django post detail view."""
     post = get_object_or_404(Post, pk=post_pk)
-    return render(request, 'blog/post_detail.htlm', {'post': post})
+    return render(request, 'blog/post_detail.html', {'post': post})
 
 
 @login_required
@@ -55,8 +54,8 @@ def post_edit(request, post_pk, *args, **kwargs):
 
 def post_list_json(request, *args, **kwargs):
     """Pure Django REST API posts list view."""
-    query_set = Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
-    posts_list = [post.serialize() for post in query_set]
+    query_set = Post.objects.all().order_by('-created_date')
+    posts_list = [{'id': post.id, 'title': post.title, 'text': post.text, 'likes': 14} for post in query_set]
     data = {
         'response': posts_list
     }
@@ -71,7 +70,7 @@ def post_detail_json(request, post_pk, *args, **kwargs):
     status = 200
     try:
         post = Post.objects.get(pk=post_pk)
-        data['author'] = post.author
+        data['author'] = post.author.username
         data['title'] = post.title
         data['text'] = post.text
         data['created_date'] = post.created_date
