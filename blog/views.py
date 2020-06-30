@@ -57,7 +57,7 @@ def post_list_json(request, *args, **kwargs):
     query_set = Post.objects.all().order_by('-created_date')
     posts_list = [{'id': post.id, 'title': post.title, 'text': post.text, 'likes': 14} for post in query_set]
     data = {
-        'response': posts_list
+        'response': posts_list,
     }
     return JsonResponse(data)
 
@@ -65,7 +65,7 @@ def post_list_json(request, *args, **kwargs):
 def post_detail_json(request, post_pk, *args, **kwargs):
     """Pure Django REST API post detail view."""
     data = {
-        'post_id': post_pk
+        'post_id': post_pk,
     }
     status = 200
     try:

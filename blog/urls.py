@@ -4,7 +4,7 @@ from django.urls import path
 from .views import (
     post_list, post_detail,
     post_list_json, post_detail_json,
-    post_create, post_edit
+    post_create, post_edit,
 )
 
 

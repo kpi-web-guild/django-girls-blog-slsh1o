@@ -9,6 +9,7 @@ MAX_TITLE_LENGTH = 64
 
 class PostForm(forms.ModelForm):
     """New Post creation form."""
+
     class Meta:
         model = Post
         fields = ['title', 'text']
