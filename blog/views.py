@@ -55,7 +55,10 @@ def post_edit(request, post_pk, *args, **kwargs):
 def post_list_json(request, *args, **kwargs):
     """Pure Django REST API posts list view."""
     query_set = Post.objects.all().order_by('-created_date')
-    posts_list = [{'id': post.id, 'title': post.title, 'text': post.text, 'likes': 14} for post in query_set]
+    posts_list = [
+        {'id': post.id, 'title': post.title, 'text': post.text, 'likes': 14}
+        for post in query_set
+    ]
     data = {
         'response': posts_list,
     }

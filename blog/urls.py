@@ -14,5 +14,9 @@ urlpatterns = [
     path('post/<int:post_pk>/', post_detail, name='post_detail'),
     path('post/<int:post_pk>/edit', post_edit, name='post_edit'),
     path('api/posts/', post_list_json, name='post_list_json'),
-    path('api/posts/<int:post_pk>/', post_detail_json, name='post_detail_json'),
+    path(
+        'api/posts/<int:post_pk>/',
+        post_detail_json,
+        name='post_detail_json',
+    ),
 ]
