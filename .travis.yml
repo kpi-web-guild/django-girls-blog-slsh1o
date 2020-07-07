@@ -1,5 +1,12 @@
 language: python
-python: 3.8
+python:
+  - 3.8
+  - 3.7
 cache: pip
-before_install: pip install -r travis-requirements.txt
-script: pre-commit run --all-files
+script:
+  - python manage.py test
+jobs:
+  include:
+    - install:
+        - pip install -r travis-requirements.txt
+      script: pre-commit run --all-files
