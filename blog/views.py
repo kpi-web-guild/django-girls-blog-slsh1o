@@ -52,3 +52,11 @@ def post_edit(request, post_pk):
     else:
         form = PostForm(instance=post)
     return render(request, 'blog/post_form.html', {'form': form})
+
+
+@login_required
+def post_delete(request, post_pk):
+    """Classic Django post delete view."""
+    post = get_object_or_404(Post, pk=post_pk)
+    post.delete()
+    return redirect('post_list')
