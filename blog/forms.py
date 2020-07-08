@@ -1,4 +1,4 @@
-"""Forms fo blog app."""
+"""Forms for the blog app."""
 from django import forms
 
 from .models import Post
