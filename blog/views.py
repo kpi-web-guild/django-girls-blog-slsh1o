@@ -8,7 +8,7 @@ from .forms import PostForm
 
 
 def post_list(request):
-    """Classic Django posts list view."""
+    """Return a list of all published Posts."""
     posts_list = Post.objects \
                      .filter(published_date__lte=timezone.now()) \
                      .order_by('-published_date')
@@ -16,14 +16,14 @@ def post_list(request):
 
 
 def post_detail(request, post_pk):
-    """Classic Django post detail view."""
+    """Return a Post with passed pk."""
     post = get_object_or_404(Post, pk=post_pk)
     return render(request, 'blog/post_detail.html', {'post': post})
 
 
 @login_required
 def post_create(request):
-    """Classic Django post creation func view."""
+    """Create a new Post if form is valid."""
     if request.method == 'POST':
         form = PostForm(request.POST)
         if form.is_valid():
@@ -39,7 +39,7 @@ def post_create(request):
 
 @login_required
 def post_edit(request, post_pk):
-    """Classic Django post edit func view."""
+    """Edit fields of a Post with passed pk."""
     post = get_object_or_404(Post, pk=post_pk)
     if request.method == 'POST':
         form = PostForm(request.POST, instance=post)
@@ -56,7 +56,7 @@ def post_edit(request, post_pk):
 
 @login_required
 def post_delete(request, post_pk):
-    """Classic Django post delete view."""
+    """Delete a Post with passed pk."""
     post = get_object_or_404(Post, pk=post_pk)
     post.delete()
     return redirect('post_list')
