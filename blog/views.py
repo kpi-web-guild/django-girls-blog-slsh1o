@@ -9,9 +9,11 @@ from .forms import PostForm
 
 def post_list(request):
     """Return a list of all published Posts."""
-    posts_list = Post.objects \
-                     .filter(published_date__lte=timezone.now()) \
-                     .order_by('-published_date')
+    posts_list = (
+        Post.objects
+        .filter(published_date__lte=timezone.now())
+        .order_by('-published_date')
+    )
     return render(request, 'blog/post_list.html', {'posts': posts_list})
 
 
