@@ -3,6 +3,9 @@ python:
   - 3.8
   - 3.7
 cache: pip
+env:
+  global:
+    - KPI_SECRET_KEY="DummySecretKeyForUseOnTravis"
 script:
   - python manage.py test
 jobs:
