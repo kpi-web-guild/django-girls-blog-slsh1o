@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div>
+        <h2>{{ post.title }}</h2>
+        <a href="{% url 'post_edit' post_pk=post.pk %}"><button type="button" class="btn btn-dark">Edit</button></a>
+        <a href="{% url 'post_delete' post_pk=post.pk %}"><button type="button" class="btn btn-danger">Delete</button></a>
+        <p>{{ post.text|linebreaksbr }}</p>
+        {% if post.published_date %}
+            <div>
+                Published on {{ post.published_date }}
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}
