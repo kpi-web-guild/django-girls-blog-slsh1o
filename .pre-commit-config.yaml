@@ -11,6 +11,8 @@ repos:
     -   id: check-docstring-first
     -   id: end-of-file-fixer
     -   id: name-tests-test
+        args:
+        - --django
     -   id: check-ast
     -   id: debug-statements
 
